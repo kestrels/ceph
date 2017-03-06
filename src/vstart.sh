@@ -108,7 +108,7 @@ keyring_fn="$CEPH_CONF_PATH/keyring"
 osdmap_fn="/tmp/ceph_osdmap.$$"
 monmap_fn="/tmp/ceph_monmap.$$"
 
-usage="usage: $0 [option]... [\"mon\"] [\"mds\"] [\"osd\"]\n"
+usage="usage: $0 [option]... [\"mon\"] [\"mds\"] [\"osd\"] [\"rgw\"] [\"mgr"\]\n"
 usage=$usage"options:\n"
 usage=$usage"\t-d, --debug\n"
 usage=$usage"\t-s, --standby_mds: Generate standby-replay MDS for each active\n"
@@ -129,6 +129,8 @@ usage=$usage"\t-o config\t\t add extra config parameters to all sections\n"
 usage=$usage"\t--mon_num specify ceph monitor count\n"
 usage=$usage"\t--osd_num specify ceph osd count\n"
 usage=$usage"\t--mds_num specify ceph mds count\n"
+usage=$usage"\t--rgw_num specify ceph rgw count\n"
+usage=$usage"\t--mgr_num specify ceph mgr count\n"
 usage=$usage"\t--rgw_port specify ceph rgw http listen port\n"
 usage=$usage"\t--rgw_frontend specify the rgw frontend configuration\n"
 usage=$usage"\t-b, --bluestore use bluestore as the osd objectstore backend\n"
@@ -213,6 +215,14 @@ case $1 in
             ;;
     --mds_num )
             CEPH_NUM_MDS=$2
+            shift
+            ;;
+    --rgw_num )
+            CEPH_NUM_RGW=$2
+            shift
+            ;;
+    --mgr_num )
+            CEPH_NUM_MGR=$2
             shift
             ;;
     --rgw_port )
