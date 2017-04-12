@@ -531,6 +531,7 @@ endif(LINUX)
 
 if(HAVE_POWER8)
   list(APPEND libcommon_files common/crc32c_ppc_asm.S)
+  list(APPEND libcommon_files common/crc32c_ppc_fast_zero_asm.S)
 endif(HAVE_POWER8)
 
 if(WITH_LTTNG AND WITH_EVENTTRACE)
